@@ -1,5 +1,6 @@
 from socket import *
 import time
+
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 clientSocket.connect(('127.0.0.1', 12000))
 clientSocket.settimeout(1)
@@ -12,13 +13,11 @@ for x in range(9):
     try:
         responseServer = clientSocket.recvfrom(1024)
     except timeout:
-        print("Connection timeout")
+        print("Tempo limite para conexão")
         continue
     pingEnd = time.time()
     if message != '':
         print(message)
         rtt = pingEnd - pingStart
-        print("Ping response: ", rtt)    
+        print("Resposta do ping: ", rtt)    
 clientSocket.close()
-
-
